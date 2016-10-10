@@ -1,0 +1,30 @@
+{
+  "name": "loopback-ibmresearch-mixin",
+  "version": "0.1.0",
+  "description": "A Loopback mixin using in some IBM research apps",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "loopback",
+    "strongloop",
+    "mixin",
+    "post",
+    "cache",
+    "spam"
+  ],
+  "author": "Jorge Carballo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBMResearch/loopback-ibmresearch-mixin.git"
+  },
+  "dependencies": {
+    "debug": "2.x",
+    "lodash": "^4.16.4"
+  },
+  "peerDependencies": {
+    "loopback-datasource-juggler": ">=2.46.1"
+  }
+}
