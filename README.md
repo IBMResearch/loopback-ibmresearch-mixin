@@ -1,4 +1,4 @@
-# Generate POST methods for Loopback Models
+# IBM research mixin for Loopback Models
 
 This module is designed for the [Strongloop Loopback](https://github.com/strongloop/loopback) framework.
 
