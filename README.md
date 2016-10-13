@@ -1,5 +1,7 @@
 # IBM research mixin for Loopback Models
 
+[![npm info](https://nodei.co/npm/loopback-ibmresearch-mixin.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/package/loopback-ibmresearch-mixin)
+
 This module is designed for the [Strongloop Loopback](https://github.com/strongloop/loopback) framework.
 
 ## Installation
