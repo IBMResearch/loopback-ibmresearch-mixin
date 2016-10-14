@@ -29,6 +29,7 @@ Create a memory cache for find methods in model.
 
 * `ttl`: Time to live of the cache in miliseconds (Default 30000).
 * `reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. Default: `true`).
+* `invalidateCacheAfterSave`: If true, the cache will be invalidated after save any instance of the model.
 * `methods`: Array of remote methods that will be cached too.
 
 ### model-config.json
