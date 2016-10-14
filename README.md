@@ -23,7 +23,9 @@ It automatically adds `POST` method for any Model.
 Create a memory cache for find methods in model.
 
 `ttl`: Time to live of the cache in miliseconds (Default 30000).
+
 `reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. Default: `true`).
+
 `methods`: Array of remote methods that will be cached too.
 
 ### model-config.json
@@ -54,7 +56,7 @@ To use with your Models add the `mixins` attribute to the definition object of y
 
 ```json
   {
-    "name": "Widget",
+    "name": "MyModel",
     "properties": {
       "name": {
         "type": "string",
@@ -71,6 +73,27 @@ To use with your Models add the `mixins` attribute to the definition object of y
       }
     }
   }
+```
+
+### Configure programatically
+
+In `server/boot` folder of the loopback app.
+
+```javascript
+var postMethod = require('loopback-ibmresearch-mixin/lib/postMethod');
+var modelCache = require('loopback-ibmresearch-mixin/lib/modelCache');
+
+module.exports = function(app) {
+
+  var options = {
+    ttl: 5000,
+    methods: [ 'myRemoteMethod' ]
+  };
+
+  modelCache(app.models.MyModel, options);
+  postMethod(app.models.MyModel);
+
+};
 ```
 
 # LICENSE
