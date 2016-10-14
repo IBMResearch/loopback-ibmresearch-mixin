@@ -18,6 +18,14 @@ It automatically adds `POST` method for any Model.
 
 `assignProperties` will be assign properties instead of merge.
 
+#### _ModelCache_ mixin
+
+Create a memory cache for find methods in model.
+
+`ttl`: Time to live of the cache in miliseconds (Default 30000).
+`reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. Default: `true`).
+`methods`: Array of remote methods that will be cached too.
+
 ### model-config.json
 
 Add the `mixins` property to your `server/model-config.json`:
@@ -53,8 +61,13 @@ To use with your Models add the `mixins` attribute to the definition object of y
       }
     },
     "mixins": {
-      "PostMethod" : {
+      "PostMethod": {
         "assignProperties": false
+      },
+      "ModelCache": {
+        "ttl": 4000,
+        "reloadAfterReturn": true,
+        "methods": [ "myRemoteMethod" ]
       }
     }
   }
