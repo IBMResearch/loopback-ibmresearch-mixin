@@ -2,7 +2,12 @@
 
 [![npm info](https://nodei.co/npm/loopback-ibmresearch-mixin.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/package/loopback-ibmresearch-mixin)
 
-This module is designed for the [Strongloop Loopback](https://github.com/strongloop/loopback) framework.
+Some mixins used in IBM research apps that use Loopback. This module is designed for the [Strongloop Loopback](https://github.com/strongloop/loopback) framework.
+
+## Mixins
+
+* _PostMethod_: It automatically adds a remote method for update an instance of any model through a `POST /MyModel/<id>`.
+* _ModelCache_: Create a memory cache for find methods in model.
 
 ## Installation
 
@@ -14,19 +19,17 @@ You can put me in your package.json dependencies. The `npm` tool can do this for
 
 #### _Postmethod_ mixin
 
-It automatically adds `POST` method for any Model.
+It automatically adds a remote method for update an instance of any model through a `POST /MyModel/<id>`.
 
-`assignProperties` will be assign properties instead of merge.
+* `assignProperties` If true, it will assign instance properties instead of merging.
 
 #### _ModelCache_ mixin
 
 Create a memory cache for find methods in model.
 
-`ttl`: Time to live of the cache in miliseconds (Default 30000).
-
-`reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. Default: `true`).
-
-`methods`: Array of remote methods that will be cached too.
+* `ttl`: Time to live of the cache in miliseconds (Default 30000).
+* `reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. Default: `true`).
+* `methods`: Array of remote methods that will be cached too.
 
 ### model-config.json
 
