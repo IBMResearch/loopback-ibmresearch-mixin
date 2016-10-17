@@ -114,6 +114,13 @@ module.exports = function(app) {
 };
 ```
 
+
+### Debug
+
+For debug use:
+
+    DEBUG=loopback:ibmresearch:mixins:* npm start
+
 # LICENSE
 
 MIT License
