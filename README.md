@@ -8,6 +8,7 @@ Some mixins used in IBM research apps that use Loopback. This module is designed
 
 * _PostMethod_: It automatically adds a remote method for update an instance of any model through a `POST /MyModel/<id>`.
 * _ModelCache_: Create a memory cache for find methods in model.
+* _SpamControl_: Create a basic spam control for intances creation.
 
 ## Installation
 
@@ -27,10 +28,18 @@ It automatically adds a remote method for update an instance of any model throug
 
 Create a memory cache for find methods in model.
 
-* `ttl`: Time to live of the cache in miliseconds (Default 30000).
-* `reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. Default: `true`).
+* `ttl`: Time to live of the cache in miliseconds (default 30000).
+* `reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. default: `true`).
 * `invalidateCacheAfterSave`: If true, the cache will be invalidated after save any instance of the model.
 * `methods`: Array of remote methods that will be cached too.
+
+#### _SpamControl_ mixin
+
+Add a simple spam control for multiple creations of instances. This mixin disable instance creation of a model (and user) for a specified time after create one.
+
+* `ttl`: Time to wait to create a new instance in miliseconds (default 30000).
+* `unique`: Only access to this model will be checked (default `true`).
+* `errorCode`: ErrorCode to generate if spam detected (`next({code: errorCode})`).
 
 ### model-config.json
 
@@ -74,6 +83,9 @@ To use with your Models add the `mixins` attribute to the definition object of y
         "ttl": 4000,
         "reloadAfterReturn": true,
         "methods": [ "myRemoteMethod" ]
+      },
+      "SpamControl": {
+        "ttl": 5000
       }
     }
   }
@@ -86,6 +98,7 @@ In `server/boot` folder of the loopback app.
 ```javascript
 var postMethod = require('loopback-ibmresearch-mixin/lib/postMethod');
 var modelCache = require('loopback-ibmresearch-mixin/lib/modelCache');
+var spamControl = require('loopback-ibmresearch-mixin/lib/spamControl');
 
 module.exports = function(app) {
 
@@ -96,6 +109,7 @@ module.exports = function(app) {
 
   modelCache(app.models.MyModel, options);
   postMethod(app.models.MyModel);
+  spamControl(app.models.MyModel);
 
 };
 ```

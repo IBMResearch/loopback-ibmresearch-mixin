@@ -1,6 +1,6 @@
 {
   "name": "loopback-ibmresearch-mixin",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "A Loopback mixin using in some IBM research apps",
   "main": "lib/index.js",
   "scripts": {
@@ -23,6 +23,7 @@
   "dependencies": {
     "debug": "2.x",
     "lodash": "^4.16.4",
+    "loopback-context": "^1.0.0",
     "loopback-datasource-juggler": "^2.45.2",
     "memory-cache": "^0.1.6"
   },
