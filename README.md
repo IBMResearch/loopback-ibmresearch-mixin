@@ -7,7 +7,7 @@ Some mixins used in IBM research apps that use Loopback. This module is designed
 ## Mixins
 
 * _PostMethod_: It automatically adds a remote method for update an instance of any model through a `POST /MyModel/<id>`.
-* _ModelCache_: Create a memory cache for find methods in model.
+* _ModelCache_: Create a cache for find methods in model (memory or redis).
 * _SpamControl_: Create a basic spam control for intances creation.
 
 ## Installation
@@ -26,12 +26,14 @@ It automatically adds a remote method for update an instance of any model throug
 
 #### _ModelCache_ mixin
 
-Create a memory cache for find methods in model.
+Create a cache for find methods in model (memory or redis).
 
 * `ttl`: Time to live of the cache in miliseconds (default 30000).
 * `reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. default: `true`).
 * `invalidateCacheAfterSave`: If true, the cache will be invalidated after save any instance of the model.
 * `methods`: Array of remote methods that will be cached too.
+* `type`: Backend type ('memory' or 'redis'). Default value is 'memory'.
+* `configuration`: Configuration of the backend.
 
 #### _SpamControl_ mixin
 
@@ -40,6 +42,8 @@ Add a simple spam control for multiple creations of instances. This mixin disabl
 * `ttl`: Time to wait to create a new instance in miliseconds (default 30000).
 * `unique`: Only access to this model will be checked (default `true`).
 * `errorCode`: ErrorCode to generate if spam detected (`next({code: errorCode})`).
+* `type`: Backend type ('memory' or 'redis'). Default value is 'memory'.
+* `configuration`: Configuration of the backend.
 
 ### model-config.json
 
@@ -85,7 +89,14 @@ To use with your Models add the `mixins` attribute to the definition object of y
         "methods": [ "myRemoteMethod" ]
       },
       "SpamControl": {
-        "ttl": 5000
+        "ttl": 5000,
+        "type": "redis",
+        "configuration": {
+          "host": "xxx",
+          "password": "xxx",
+          "port": "xxx",
+          "dbNumber": "x"
+        }
       }
     }
   }
