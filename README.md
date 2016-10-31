@@ -9,6 +9,7 @@ Some mixins used in IBM research apps that use Loopback. This module is designed
 * _PostMethod_: It automatically adds a remote method for update an instance of any model through a `POST /MyModel/<id>`.
 * _ModelCache_: Create a cache for find methods in model (memory or redis).
 * _SpamControl_: Create a basic spam control for intances creation.
+* _Timestamp_: Add timestamp properties for models and set automatically.
 
 ## Installation
 
@@ -44,6 +45,12 @@ Add a simple spam control for multiple creations of instances. This mixin disabl
 * `errorCode`: ErrorCode to generate if spam detected (`next({code: errorCode})`).
 * `type`: Backend type ('memory' or 'redis'). Default value is 'memory'.
 * `configuration`: Configuration of the backend.
+
+#### _Timestamp_ mixin
+
+* `createdAt`: Name of the property for createdAt attribute (default: 'createdAt').
+* `modifiedAt`: Name of the property for attribute (default: 'modifiedAt').
+* `required`: Indicates if the previous attributes are required for the model (default: false).
 
 ### model-config.json
 
@@ -97,6 +104,9 @@ To use with your Models add the `mixins` attribute to the definition object of y
           "port": "xxx",
           "dbNumber": "x"
         }
+      },
+      "Timestamp": {
+        "modifiedAt": "modifiedAt"
       }
     }
   }
@@ -110,6 +120,7 @@ In `server/boot` folder of the loopback app.
 var postMethod = require('loopback-ibmresearch-mixin/lib/postMethod');
 var modelCache = require('loopback-ibmresearch-mixin/lib/modelCache');
 var spamControl = require('loopback-ibmresearch-mixin/lib/spamControl');
+var timestamp = require('loopback-ibmresearch-mixin/lib/timestamp');
 
 module.exports = function(app) {
 
@@ -121,6 +132,7 @@ module.exports = function(app) {
   modelCache(app.models.MyModel, options);
   postMethod(app.models.MyModel);
   spamControl(app.models.MyModel);
+  timestamp(app.models.MyModel);
 
 };
 ```
