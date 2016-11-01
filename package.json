@@ -4,7 +4,7 @@
   "description": "A Loopback mixin using in some IBM research apps",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/test.js --reporter spec"
   },
   "keywords": [
     "loopback",
@@ -21,6 +21,7 @@
     "url": "https://github.com/IBMResearch/loopback-ibmresearch-mixin.git"
   },
   "dependencies": {
+    "chai": "^3.5.0",
     "debug": "2.x",
     "lodash": "^4.16.4",
     "loopback-context": "^1.0.0",
@@ -30,5 +31,8 @@
   },
   "peerDependencies": {
     "loopback-datasource-juggler": ">=2.46.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2"
   }
 }

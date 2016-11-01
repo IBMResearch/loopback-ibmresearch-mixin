@@ -2,6 +2,11 @@
 
 [![npm info](https://nodei.co/npm/loopback-ibmresearch-mixin.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/package/loopback-ibmresearch-mixin)
 
+[![npm](https://img.shields.io/npm/v/loopback-ibmresearch-mixin.svg)]()
+[![dependencies](https://img.shields.io/david/IBMResearch/loopback-ibmresearch-mixin.svg)]()
+[![devDependencies](https://img.shields.io/david/dev/IBMResearch/loopback-ibmresearch-mixin.svg)]()
+[![Build Status](https://img.shields.io/travis/IBMResearch/loopback-ibmresearch-mixin.svg)]()
+
 Some mixins used in IBM research apps that use Loopback. This module is designed for the [Strongloop Loopback](https://github.com/strongloop/loopback) framework.
 
 ## Mixins
