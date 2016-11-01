@@ -51,6 +51,26 @@ Add a simple spam control for multiple creations of instances. This mixin disabl
 * `createdAt`: Name of the property for createdAt attribute (default: 'createdAt').
 * `modifiedAt`: Name of the property for attribute (default: 'modifiedAt').
 * `required`: Indicates if the previous attributes are required for the model (default: false).
+* `history`: (WIP - Work In Progress) If `true` indicates that the `modifiedAt` attribute is a object with an history of modifications with time and user (`anonymous` or _userId_) that made the change:
+
+        {
+           ...
+           "modifiedAt": {
+             "1478000538364": "anonymous",
+             "1478000231241": "anonymous",
+             "1478000198352": "1"
+           },
+           ...
+        }
+
+If history is set to `false`:
+
+    {
+      ...
+      "createdAt": "2016-11-01T10:02:34.794Z",
+      "modifiedAt": "2016-11-01T10:20:34.794Z",
+      ...
+    }
 
 ### model-config.json
 
@@ -106,7 +126,7 @@ To use with your Models add the `mixins` attribute to the definition object of y
         }
       },
       "Timestamp": {
-        "modifiedAt": "modifiedAt"
+        "history": false
       }
     }
   }
