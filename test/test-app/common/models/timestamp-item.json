@@ -1,0 +1,19 @@
+{
+  "name": "TimestampItem",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Timestamp": {
+      "history": false
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

@@ -4,7 +4,7 @@
   "description": "A Loopback mixin using in some IBM research apps",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha test/test.js --reporter spec"
+    "test": "mocha test/*.js --reporter spec"
   },
   "keywords": [
     "loopback",
@@ -33,6 +33,10 @@
     "loopback-datasource-juggler": ">=2.46.1"
   },
   "devDependencies": {
+    "debug": "^2.2.0",
+    "lodash": "^4.16.6",
+    "loopback": "^2.36.0",
+    "loopback-boot": "^2.23.0",
     "mocha": "^3.1.2"
   }
 }
