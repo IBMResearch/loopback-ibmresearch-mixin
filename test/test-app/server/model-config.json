@@ -33,5 +33,9 @@
   "SpamcontrolItem": {
     "dataSource": "db",
     "public": false
+  },
+  "PostmethodItem": {
+    "dataSource": "db",
+    "public": false
   }
 }
