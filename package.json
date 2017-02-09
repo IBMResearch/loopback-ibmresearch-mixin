@@ -1,6 +1,6 @@
 {
   "name": "loopback-ibmresearch-mixin",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A Loopback mixin using in some IBM research apps",
   "main": "lib/index.js",
   "scripts": {
@@ -37,6 +37,11 @@
     "lodash": "^4.16.6",
     "loopback": "^2.36.0",
     "loopback-boot": "^2.23.0",
-    "mocha": "^3.1.2"
+    "mocha": "^3.1.2",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0"
   }
 }
