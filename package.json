@@ -1,6 +1,6 @@
 {
   "name": "loopback-ibmresearch-mixin",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A Loopback mixin using in some IBM research apps",
   "main": "lib/index.js",
   "scripts": {
