@@ -23,7 +23,7 @@ function MemoryWrapper() {
     },
     get: function (key, cb) {
       var cachedResults = cache.get(key);
-      cb(null, cachedResults);
+      cb(null, JSON.parse(cachedResults));
     }
   };
 }
