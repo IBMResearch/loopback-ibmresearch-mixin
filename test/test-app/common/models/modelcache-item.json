@@ -1,0 +1,20 @@
+{
+  "name": "ModelcacheItem",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "ModelCache": {
+      "disableDefault": true,
+      "methods": ["getAllItems", "methodWithParam"]
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
