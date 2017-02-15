@@ -34,7 +34,7 @@ It automatically adds a remote method for update an instance of any model throug
 
 Create a cache for find methods in model (memory or redis).
 
-* `ttl`: Time to live of the cache in miliseconds (default 30000).
+* `ttl`: Time to live of the cache in seconds (default 30).
 * `reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. default: `true`).
 * `invalidateCacheAfterSave`: If true, the cache will be invalidated after save any instance of the model.
 * `methods`: Array of remote methods that will be cached too.
@@ -45,7 +45,7 @@ Create a cache for find methods in model (memory or redis).
 
 Add a simple spam control for multiple creations of instances. This mixin disable instance creation of a model (and user) for a specified time after create one.
 
-* `ttl`: Time to wait to create a new instance in miliseconds (default 30000).
+* `ttl`: Time to wait to create a new instance in seconds (default 30).
 * `unique`: Only access to this model will be checked (default `true`).
 * `errorCode`: ErrorCode to generate if spam detected (`next({code: errorCode})`).
 * `type`: Backend type ('memory' or 'redis'). Default value is 'memory'.
@@ -116,12 +116,12 @@ To use with your Models add the `mixins` attribute to the definition object of y
         "assignProperties": false
       },
       "ModelCache": {
-        "ttl": 4000,
+        "ttl": 40,
         "reloadAfterReturn": true,
         "methods": [ "myRemoteMethod" ]
       },
       "SpamControl": {
-        "ttl": 5000,
+        "ttl": 50,
         "type": "redis",
         "configuration": {
           "host": "xxx",
@@ -150,7 +150,7 @@ var timestamp = require('loopback-ibmresearch-mixin/lib/timestamp');
 module.exports = function(app) {
 
   var options = {
-    ttl: 5000,
+    ttl: 5,
     methods: [ 'myRemoteMethod' ]
   };
 

@@ -5,7 +5,7 @@ var debug = require('debug')('loopback:ibmresearch:mixins:backend:memory');
 function MemoryWrapper() {
   return {
     setex(key, ttl, value) {
-      cache.put(key, JSON.stringify(value), ttl);
+      cache.put(key, JSON.stringify(value), ttl * 1000);
     },
     ttl(key, cb) {
       var cachedResults = cache.get(key);
