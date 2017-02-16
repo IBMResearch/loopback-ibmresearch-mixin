@@ -14,14 +14,11 @@ function findAndCheckName(id, name, cb) {
 }
 
 describe('Post method tests', function () {
-
   it('Simple post', function (done) {
     PostmethodItem.destroyAll(function () {
       PostmethodItem.create({ name: 'item 1' }, function (err, item) {
         chai.assert.isNumber(item.id);
-
         const newName = 'item 1 - changed';
-
         PostmethodItem.updateDataWithPost(item.id, { name: newName }, function (errUpdate, itemModified) {
           chai.expect(itemModified.name).to.equal(newName);
           findAndCheckName(item.id, newName, function () {

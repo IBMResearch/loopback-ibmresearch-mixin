@@ -14,14 +14,10 @@ function findAndCheckName(id, name, cb) {
 }
 
 describe('Model cache tests', function () {
-
-  it('Simple post', function (done) {
+  it('Simple create', function (done) {
     ModelcacheItem.destroyAll(function () {
       ModelcacheItem.create({ name: 'item 1' }, function (err, item) {
         chai.assert.isNumber(item.id);
-
-        const newName = 'item 1 - changed';
-
         done();
       });
     });
@@ -36,13 +32,13 @@ describe('Model cache tests', function () {
       ModelcacheItem.create({ name: 'item 1' }, function (err, item) {
         chai.assert.isNumber(item.id);
         start = new Date();
-        ModelcacheItem.getAllItems(function (errFirst, itemsFirstTime) {
+        ModelcacheItem.getAllItems(function () {
           firstFind = new Date();
-          ModelcacheItem.getAllItems(function (errSecond, itemsSecondTime) {
+          ModelcacheItem.getAllItems(function () {
             secondFind = new Date();
             chai.assert.isAbove(firstFind - start, secondFind - firstFind, 'Cache time is faster');
-            ModelcacheItem.upsert({ name: 'item 1 modified' }, function (errModified, itemModified) {
-              ModelcacheItem.getAllItems(function (errThird, itemsThirdTime) {
+            ModelcacheItem.upsert({ name: 'item 1 modified' }, function () {
+              ModelcacheItem.getAllItems(function () {
                 thirdFind = new Date();
                 chai.assert.isAbove(thirdFind - secondFind, secondFind - firstFind, 'Cache time after upsert is slower');
                 done();
@@ -64,13 +60,13 @@ describe('Model cache tests', function () {
       ModelcacheItem.create({ name: 'item 1' }, function (err, item) {
         chai.assert.isNumber(item.id);
         start = new Date();
-        ModelcacheItem.methodWithParam(param, function (errFirst, itemsFirstTime) {
+        ModelcacheItem.methodWithParam(param, function () {
           firstFind = new Date();
-          ModelcacheItem.methodWithParam(param, function (errSecond, itemsSecondTime) {
+          ModelcacheItem.methodWithParam(param, function () {
             secondFind = new Date();
             chai.assert.isAbove(firstFind - start, secondFind - firstFind, 'Cache time is faster');
-            ModelcacheItem.upsert({ name: 'item 1 modified' }, function (errModified, itemModified) {
-              ModelcacheItem.methodWithParam(param, function (errThird, itemsThirdTime) {
+            ModelcacheItem.upsert({ name: 'item 1 modified' }, function () {
+              ModelcacheItem.methodWithParam(param, function () {
                 thirdFind = new Date();
                 chai.assert.isAbove(thirdFind - secondFind, secondFind - firstFind, 'Cache time after upsert is slower');
                 done();
