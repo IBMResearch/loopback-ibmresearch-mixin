@@ -37,6 +37,7 @@ Create a cache for find methods in model (memory or redis).
 * `ttl`: Time to live of the cache in seconds (default 30).
 * `reloadAfterReturn`: After return from cache (the DB method will be fired and reload cache. default: `true`).
 * `invalidateCacheAfterSave`: If true, the cache will be invalidated after save any instance of the model.
+* `disableDefault`: Disable cache in find method (default `false`)
 * `methods`: Array of remote methods that will be cached too.
 * `type`: Backend type ('memory' or 'redis'). Default value is 'memory'.
 * `configuration`: Configuration of the backend.
