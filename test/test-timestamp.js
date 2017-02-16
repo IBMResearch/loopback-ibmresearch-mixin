@@ -1,5 +1,4 @@
 var chai = require('chai');
-
 var path = require('path');
 var SIMPLE_APP = path.join(__dirname, 'test-app');
 var app = require(path.join(SIMPLE_APP, 'server/server.js'));
@@ -10,24 +9,25 @@ describe('Timestamp tests', function () {
   var TimestampItem = app.models.TimestampItem;
 
   it('CreatedAt property exists', function (done) {
-    TimestampItem.destroyAll(function() {
-       TimestampItem.create({name: 'item 1'}, function(err, item) {
-         if (err) return done(err);
-         chai.assert.isNotNull(item.createdAt);
-         chai.expect(item.createdAt).be.instanceOf(Date);
-         done();
-       });
-     });
+    TimestampItem.destroyAll(function () {
+      TimestampItem.create({ name: 'item 1' }, function (err, item) {
+        if (err) return done(err);
+        chai.assert.isNotNull(item.createdAt);
+        chai.expect(item.createdAt).be.instanceOf(Date);
+        done();
+      });
+    });
   });
 
   it('CreatedAt property not change on save', function (done) {
-    TimestampItem.destroyAll(function() {
-      TimestampItem.create({name: 'item 1'}, function(err, item) {
+    TimestampItem.destroyAll(function () {
+      TimestampItem.create({ name: 'item 1' }, function (err, createdItem) {
+        var item = createdItem;
         if (err) return done(err);
         chai.assert.isNotNull(item.createdAt);
         chai.expect(item.createdAt).be.instanceOf(Date);
         item.name = 'item 1 modified';
-        item.save(function(err, i) {
+        return item.save(function (errSave, i) {
           chai.expect(i.createdAt).equal(item.createdAt);
           done();
         });
@@ -36,15 +36,15 @@ describe('Timestamp tests', function () {
   });
 
   it('CreatedAt property not change on updateAttributes', function (done) {
-    TimestampItem.destroyAll(function() {
-      TimestampItem.create({name: 'item 1'}, function(err, item) {
-        if (err) return done(err);
-        chai.assert.isNotNull(item.createdAt);
-        chai.expect(item.createdAt).be.instanceOf(Date);
+    TimestampItem.destroyAll(function () {
+      TimestampItem.create({ name: 'item 1' }, function (err, item) {
         var attributes = {
           name: 'item 1 modified'
         };
-        item.updateAttributes(attributes, function(err, i) {
+        if (err) return done(err);
+        chai.assert.isNotNull(item.createdAt);
+        chai.expect(item.createdAt).be.instanceOf(Date);
+        return item.updateAttributes(attributes, function (errUpdate, i) {
           chai.expect(i.createdAt).equal(item.createdAt);
           done();
         });
@@ -53,26 +53,27 @@ describe('Timestamp tests', function () {
   });
 
   it('ModifiedAt property exists', function (done) {
-    TimestampItem.destroyAll(function() {
-       TimestampItem.create({name: 'item 1'}, function(err, item) {
-         if (err) return done(err);
-         chai.assert.isNotNull(item.modifiedAt);
-         chai.expect(item.modifiedAt).be.instanceOf(Date);
-         done();
-       });
-     });
+    TimestampItem.destroyAll(function () {
+      TimestampItem.create({ name: 'item 1' }, function (err, item) {
+        if (err) return done(err);
+        chai.assert.isNotNull(item.modifiedAt);
+        chai.expect(item.modifiedAt).be.instanceOf(Date);
+        done();
+      });
+    });
   });
 
   it('ModifiedAt property change on save', function (done) {
-    TimestampItem.destroyAll(function() {
-      TimestampItem.create({name: 'item 1'}, function(err, item) {
+    TimestampItem.destroyAll(function () {
+      TimestampItem.create({ name: 'item 1' }, function (err, createdItem) {
+        var item = createdItem;
+        var previousTime = item.modifiedAt;
         if (err) return done(err);
         chai.assert.isNotNull(item.modifiedAt);
         chai.expect(item.modifiedAt).be.instanceOf(Date);
         item.name = 'item 1 modified';
-        var previousTime = item.modifiedAt;
-        setTimeout(function wait1() {
-          item.save(function(err, i) {
+        return setTimeout(function wait1() {
+          item.save(function (errSave, i) {
             chai.assert.isNotNull(i.modifiedAt);
             chai.expect(i.modifiedAt).be.instanceOf(Date);
             chai.expect(i.modifiedAt).not.equal(previousTime);
@@ -85,17 +86,18 @@ describe('Timestamp tests', function () {
   });
 
   it('ModifiedAt property change on updateattributes', function (done) {
-    TimestampItem.destroyAll(function() {
-      TimestampItem.create({name: 'item 1'}, function(err, item) {
-        if (err) return done(err);
-        chai.assert.isNotNull(item.modifiedAt);
-        chai.expect(item.modifiedAt).be.instanceOf(Date);
+    TimestampItem.destroyAll(function () {
+      TimestampItem.create({ name: 'item 1' }, function (err, item) {
+        var previousTime;
         var attributes = {
           name: 'item 1 modified'
         };
-        var previousTime = item.modifiedAt;
-        setTimeout(function wait1() {
-          item.updateAttributes(attributes, function(err, i) {
+        if (err) return done(err);
+        chai.assert.isNotNull(item.modifiedAt);
+        chai.expect(item.modifiedAt).be.instanceOf(Date);
+        previousTime = item.modifiedAt;
+        return setTimeout(function wait1() {
+          item.updateAttributes(attributes, function (errUpdating, i) {
             chai.assert.isNotNull(i.modifiedAt);
             chai.expect(i.modifiedAt).be.instanceOf(Date);
             chai.expect(i.modifiedAt).not.equal(previousTime);
