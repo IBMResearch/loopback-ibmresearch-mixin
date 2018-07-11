@@ -8,7 +8,7 @@
   "mixins": {
     "ModelCache": {
       "disableDefault": true,
-      "methods": ["getAllItems", "methodWithParam"]
+      "methods": ["getAllItems", "methodWithParam", "methodWith2Param"]
     }
   },
   "properties": {

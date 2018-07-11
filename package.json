@@ -1,10 +1,10 @@
 {
   "name": "loopback-ibmresearch-mixin",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "A Loopback mixin using in some IBM research apps",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha test/*.js --reporter spec"
+    "test": "mocha test --reporter spec --exit"
   },
   "keywords": [
     "loopback",
@@ -33,14 +33,14 @@
     "loopback-datasource-juggler": ">=2.46.1"
   },
   "devDependencies": {
-    "loopback": "^2.36.0",
-    "loopback-boot": "^2.23.0",
-    "mocha": "^3.1.2",
-    "eslint": "^3.13.1",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb": "^14.0.0",
-    "eslint-plugin-import": "^2.2.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
-    "nsp": "^3.1.0"
+    "loopback": "^3.19.3",
+    "loopback-boot": "^2.23.0",
+    "mocha": "^5.2.0"
   }
 }
