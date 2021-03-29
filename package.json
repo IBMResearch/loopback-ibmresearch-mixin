@@ -25,7 +25,7 @@
     "debug": "^3.1.0",
     "lodash": "^4.16.4",
     "loopback-context": "^1.0.0",
-    "loopback-datasource-juggler": "^2.56.0",
+    "loopback-datasource-juggler": "^3.36.1",
     "memory-cache": "^0.1.6",
     "redis": "^2.6.2"
   },
