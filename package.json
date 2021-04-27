@@ -27,7 +27,7 @@
     "loopback-context": "^1.0.0",
     "loopback-datasource-juggler": "^2.56.0",
     "memory-cache": "^0.1.6",
-    "redis": "^2.6.2"
+    "redis": "^3.1.1"
   },
   "peerDependencies": {
     "loopback-datasource-juggler": ">=2.46.1"
