@@ -41,6 +41,6 @@
     "eslint-plugin-react": "^6.9.0",
     "loopback": "^3.19.3",
     "loopback-boot": "^2.23.0",
-    "mocha": "^5.2.0"
+    "mocha": "^10.2.0"
   }
 }
